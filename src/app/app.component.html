@@ -1,0 +1,32 @@
+<p>
+	Employee List
+</p>
+<table border="1">
+	<thead>
+		<th>No.</th>
+		<th>JUDUL</th>
+		<th>ISI</th>
+	</thead>
+	<tbody>
+		<ng-container *ngIf="employees$ | async as employees; else elseBlock">
+			<tr *ngFor="let employee of employees$ | async; let i = index">
+				<td>{{employee.id}}</td>
+				<td>{{employee.title}}</td>
+				<td>{{employee.body}}</td>
+			</tr>
+		</ng-container>
+		<ng-template #elseBlock>
+			<tr>
+				<td colspan="4">
+					Loading Employees...
+				</td>
+			</tr>
+		</ng-template>
+	</tbody>
+</table>
+
+<p>
+	<button (click)="loadData()">Load Data</button>
+</p>
+
+<pre>{{ users | json }}</pre>
